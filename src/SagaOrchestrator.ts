@@ -1,10 +1,10 @@
-import ISagaStep from './ISagaStep';
-import TSagaContext from './TSagaContext';
+import ISagaStep from "./ISagaStep";
+import TSagaContext from "./TSagaContext";
 
 /**
  * SagaOrchestrator manages the execution of a series of steps (sagas) in a defined order.
  * It ensures that each step is executed in sequence and handles errors by attempting to rollback the executed steps.
- * When instancing, you must provide the initial context for the saga, which will hold all information needed by 
+ * When instancing, you must provide the initial context for the saga, which will hold all information needed by
  * or produced by the steps.
  *
  * @author Joern Meyer <joern.meyer@kernpunkt.de>
@@ -27,9 +27,9 @@ export default class SagaOrchestrator<T extends TSagaContext> {
 
   /**
    * Add a step to the saga. Will throw an error if a step with the same key already exists.
-   * 
+   *
    * @param step ISagaStep
-   * @returns 
+   * @returns
    */
   public addStep(step: ISagaStep<T>): SagaOrchestrator<T> {
     if (this.findStep(step.getKey())) {
@@ -57,7 +57,7 @@ export default class SagaOrchestrator<T extends TSagaContext> {
   /**
    * Pass the context to each step in turn, executing the step's execute method.
    * If an error occurs, it gets added the log, and the orchestrator will attempt to rollback the executed steps.
-   * 
+   *
    * @returns Promise<T>
    */
   async orchestrate(): Promise<T> {
@@ -70,13 +70,12 @@ export default class SagaOrchestrator<T extends TSagaContext> {
     } catch (e: any) {
       if (this.currentStep) {
         this.context.log.errors.push(
-          `Error occured during step "${this.currentStep.getKey()}": ${e.message} Attempting rollbacks...`,
+          `Error occured during step "${this.currentStep.getKey()}": ${e.message} Attempting rollbacks...`
         );
         this.context.log.errors.push(e);
         const currentIndex = [...this.steps].indexOf(this.currentStep);
         const index =
-          typeof this.currentStep.shouldRollbackSelf === 'function' &&
-          this.currentStep.shouldRollbackSelf(this.context)
+          typeof this.currentStep.shouldRollbackSelf === "function" && this.currentStep.shouldRollbackSelf(this.context)
             ? currentIndex + 1
             : currentIndex;
 
@@ -89,7 +88,7 @@ export default class SagaOrchestrator<T extends TSagaContext> {
             this.context.log.errors.push(`Error occured during rollback of step ${step.getKey()}`);
           }
         });
-        this.context.log.errors.push('Rollback complete.');
+        this.context.log.errors.push("Rollback complete.");
       } else {
         throw e;
       }
@@ -99,13 +98,11 @@ export default class SagaOrchestrator<T extends TSagaContext> {
 
   /**
    * Helper function.
-   * 
+   *
    * @param substring string
    * @returns string | undefined
    */
   public getErrorMessageBySubstring(substring: string): string | undefined {
-    return this.context.log.errors.find((error) => error.toString().includes(substring)) as
-      | string
-      | undefined;
+    return this.context.log.errors.find((error) => error.toString().includes(substring)) as string | undefined;
   }
 }

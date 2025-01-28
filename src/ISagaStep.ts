@@ -1,6 +1,6 @@
 /**
  * Interface for a saga step
- * 
+ *
  * @author Joern Meyer <joern.meyer@kernpunkt.de>
  */
 interface ISagaStep<T> {
@@ -20,11 +20,10 @@ interface ISagaStep<T> {
   /**
    * Provide a function that returns a boolean to determine whether this
    * step should be rolled back if an error occurs during it, or just the previous steps.
-   * 
-   * @param context 
+   *
+   * @param context
    * @returns boolean
    */
   shouldRollbackSelf?: (context: T) => boolean;
 }
 export default ISagaStep;
-
