@@ -64,6 +64,16 @@ const result = await saga.orchestrate(context);
 
 Steps that implement the `ISagaStep` interface have the opportunity to provide a `shouldRollbackSelf` method. If this method exists (and returns `true`), a potential rollback **will start with this current step**. Otherwise, the current step will be ommitted.
 
+## Testing
+
+To run tests, simply run: 
+
+
+```bash
+npm run test
+yarn test
+```
+
 ## Contact
 
 |                                                                                                                              |                                                                                                      |
