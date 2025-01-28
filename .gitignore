@@ -1,0 +1,18 @@
+### Dependencies
+node_modules
+
+### Build
+dist
+
+### Env files
+.env
+.env*.local
+.env*.backup
+
+### Testing
+coverage
+
+
+### Logs
+yarn-error.log
+yarn-debug.log
