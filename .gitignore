@@ -16,3 +16,6 @@ coverage
 ### Logs
 yarn-error.log
 yarn-debug.log
+
+### Also
+.DS_Store
