@@ -1,6 +1,6 @@
 {
   "name": "@kernpunkt/saga",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "author": "Jörn Meyer <joern.meyer@kernpunkt.de>",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
