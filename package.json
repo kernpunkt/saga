@@ -15,8 +15,7 @@
   "scripts": {
     "test": "jest",
     "build": "tsup src/index.ts --format esm,cjs --dts",
-    "prettier": "prettier --write --ignore-unknown",
-    "lint": "eslint ."
+    "prettier": "prettier --write --ignore-unknown"
   },
   "devDependencies": {
     "@types/jest": "^29.5.14",
@@ -25,9 +24,6 @@
     "tsup": "^8.3.6",
     "typescript": "^5.7.3",
     "prettier": "3.4.2",
-    "eslint": "9.19.0",
-    "eslint-config-prettier": "10.0.1",
-    "eslint-plugin-import": "2.31.0",
     "@typescript-eslint/parser": "8.22.0",
     "@typescript-eslint/eslint-plugin": "8.22.0"
   },
